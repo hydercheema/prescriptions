@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
@@ -60,8 +61,9 @@ class _loginState extends State<login> {
                   SizedBox(
                     height: 60,
                   ),
-
-                  new TextFormField(
+                 new Container(
+                   margin: const EdgeInsets.only(left: 30,right: 30),
+                 child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
                         return 'Please enter your Registeration number';
@@ -84,8 +86,11 @@ class _loginState extends State<login> {
                       ),
                     ),
                   ),
+                 ),
                   SizedBox(height: 30 ,),
-                  new TextFormField(
+                 new Container(
+                   margin: const EdgeInsets.only(left: 30,right: 30),
+                 child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
                         return 'Please enter password';
@@ -111,10 +116,15 @@ class _loginState extends State<login> {
                       ),
                     ),
                   ),
+                 ),
                   SizedBox(height: 10,),
                   new Row (children: <Widget>[
-                    new Text("No Account"),
-                    new FlatButton(
+                    Container(
+                      margin: const EdgeInsets.only(left: 10),
+                   //child: Text("No Account"),
+                    child:Text("No Account",style: TextStyle(fontWeight: FontWeight.bold ),),
+                    ),
+                    FlatButton(
                       onPressed: (){
                         Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>signUp()));
                       },
@@ -122,11 +132,14 @@ class _loginState extends State<login> {
                       ),
                     ),
                     Spacer(),
-                    new RaisedButton(
+                    Container(
+                      margin: const EdgeInsets.only(right: 30),
+                    child: RaisedButton(
                         color: Colors.blue,
                         onPressed: (){},
                         child:Text("Login",style: TextStyle(color: Colors.white),)
-                    ),
+                      ),
+                    )
                   ]
                   ),
                   Divider(
@@ -134,23 +147,24 @@ class _loginState extends State<login> {
                     height: 30.0,
                   ),
                   new Row(children: <Widget>[
-                    new RaisedButton(
-                      color:Hexcolor( "#3b5998" ),
+                   new Container(
+                     margin: const EdgeInsets.only(left: 30),
+                    child: RaisedButton(
+                      color:Hexcolor( "#3b5991" ),
                       onPressed: () {
                       },
-                      child: Text("Sign In"),
+                      child:Image.asset("asset/facebook.png",width: 30.0,height: 30.0,fit:BoxFit.fill),
+                     ),
                     ),
-
                     Spacer(),
-                    new SizedBox(
-                      //   width:200,
-                      //  height: 50,
+                      Container(
+                        margin: const EdgeInsets.only(right: 30),
                       child:RaisedButton(
                         onPressed: () {
                         },
-                        child: Text("Sign In"),
-                      ),
-                    )
+                        child: Image.asset("asset/gmail.png",width: 30.0,height: 30.0,fit:BoxFit.fill),
+                        ),
+                      )
                   ],
 
                   )

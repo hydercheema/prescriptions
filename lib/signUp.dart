@@ -23,10 +23,9 @@ class _signUpState extends State<signUp> {
                 key: formkey,
                 child: ListView(children: <Widget>[
                   SizedBox(height: 70),
-                  Container(
-                    margin: const EdgeInsets.only(top: 100),
-                  ),
-                  new TextFormField(
+                 new Container(
+                    margin: const EdgeInsets.only(top: 100,left: 30,right: 30),
+                  child:TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
                         return 'Please enter your Name';
@@ -48,9 +47,12 @@ class _signUpState extends State<signUp> {
                         borderSide: BorderSide(color: Colors.blue, width: 5.0),
                       ),
                     ),
+                   ),
                   ),
                   SizedBox(height: 30 ,),
-                  new TextFormField(
+                 new Container(
+                   margin: const EdgeInsets.only(left: 30,right: 30),
+                  child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
                         return 'Please enter your Age';
@@ -73,8 +75,11 @@ class _signUpState extends State<signUp> {
                       ),
                     ),
                   ),
+                 ),
                   SizedBox(height: 30 ,),
-                  new TextFormField(
+                  new Container(
+                    margin: const EdgeInsets.only(left: 30,right: 30),
+                  child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
                         return 'Please enter your Height';
@@ -96,9 +101,12 @@ class _signUpState extends State<signUp> {
                         borderSide: BorderSide(color: Colors.blue, width: 5.0),
                       ),
                     ),
+                   ),
                   ),
                   SizedBox(height: 30 ,),
-                  new TextFormField(
+                  new Container(
+                      margin: const EdgeInsets.only(left: 30,right: 30),
+                  child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
                         return 'Please enter password';
@@ -123,9 +131,12 @@ class _signUpState extends State<signUp> {
                         borderSide: BorderSide(color: Colors.blue, width: 5.0),
                       ),
                     ),
+                   ),
                   ),
                   SizedBox(height: 30,),
-                  new TextFormField(
+                 new Container(
+                      margin: const EdgeInsets.only(left: 30,right: 30),
+                  child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
                         return ' Please confirm password';
@@ -148,7 +159,8 @@ class _signUpState extends State<signUp> {
                         borderSide: BorderSide(color: Colors.blue, width: 5.0),
                       ),
                     ),
-                  ),
+                   ),
+                 ),
                   SizedBox(height: 10,),
                   new Row (children: <Widget>[
                     Spacer(),
@@ -162,13 +174,16 @@ class _signUpState extends State<signUp> {
                   ),
                   new Row(children: <Widget>[
                     Spacer(),
-                    new Text("Already Have An Account"),
-                    new FlatButton(
+                    new Text("Already Have An Account",style: TextStyle(fontWeight: FontWeight.bold),),
+                    Container(
+                      margin: const EdgeInsets.only(right: 30),
+                    child: FlatButton(
                       onPressed: (){
                         Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>login()));
                       },
                       child: Text("Sign in",style: TextStyle(color: Colors.blue, fontSize: 15)
                       ),
+                    ),
                     ),
                    ],
                   )
