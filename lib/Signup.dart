@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:prescriptions/login.dart';
+import 'package:prescriptions/Login.dart';
 
-class signUp extends StatefulWidget {
+class Signup extends StatefulWidget {
   @override
-  _signUpState createState() => _signUpState();
+  _SignupState createState() => _SignupState();
 }
 
-class _signUpState extends State<signUp> {
+class _SignupState extends State<Signup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   String name,age,height,weight,conf_password,password;
   @override
@@ -179,7 +179,7 @@ class _signUpState extends State<signUp> {
                       margin: const EdgeInsets.only(right: 30),
                     child: FlatButton(
                       onPressed: (){
-                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>login()));
+                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Login()));
                       },
                       child: Text("Sign in",style: TextStyle(color: Colors.blue, fontSize: 15)
                       ),

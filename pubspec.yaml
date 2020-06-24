@@ -55,6 +55,11 @@ flutter:
     - asset/background.jpg
     - asset/doctor.jpeg
     - asset/paitent.jpeg
+    - asset/mbbs.png
+    - asset/dentist.png
+    - asset/appointmentspage.jpg
+    - asset/healthcare-and-medical.png
+    - asset/pharmacist.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

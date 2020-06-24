@@ -1,18 +1,17 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
+import 'package:prescriptions/Paitentdashboard.dart';
 //import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'signUp.dart';
+import 'Signup.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class login extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  _loginState createState() => _loginState();
+  _LoginState createState() => _LoginState();
 }
 
-class _loginState extends State<login> {
+class _LoginState extends State<Login> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   String registeration, password;
 
@@ -126,7 +125,7 @@ class _loginState extends State<login> {
                     ),
                     FlatButton(
                       onPressed: (){
-                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>signUp()));
+                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Signup()));
                       },
                       child: Text("Sign up",style: TextStyle(color: Colors.blue, fontSize: 15)
                       ),
@@ -136,7 +135,9 @@ class _loginState extends State<login> {
                       margin: const EdgeInsets.only(right: 30),
                     child: RaisedButton(
                         color: Colors.blue,
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Paitentdashboard()));
+                        },
                         child:Text("Login",style: TextStyle(color: Colors.white),)
                       ),
                     )
