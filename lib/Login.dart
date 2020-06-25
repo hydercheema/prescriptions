@@ -5,6 +5,7 @@ import 'package:prescriptions/Paitentdashboard.dart';
 //import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'Paitentsignup.dart';
 import 'Doctorsignup.dart';
+import 'Doctordashboard.dart';
 //import 'package:hexcolor/hexcolor.dart';
 
 class Login extends StatefulWidget {
@@ -140,7 +141,7 @@ class _LoginState extends State<Login> {
                     child: RaisedButton(
                         color: Colors.blue,
                         onPressed: (){
-                          Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Paitentdashboard()));
+                          Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Doctordashboard()));
                         },
                         child:Text("Login",style: TextStyle(color: Colors.white),)
                       ),
