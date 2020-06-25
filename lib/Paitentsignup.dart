@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/Login.dart';
 
-class Signup extends StatefulWidget {
+class Paitentsignup extends StatefulWidget {
   @override
-  _SignupState createState() => _SignupState();
+  _PaitentsignupState createState() => _PaitentsignupState();
 }
 
-class _SignupState extends State<Signup> {
+class _PaitentsignupState extends State<Paitentsignup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   String name,age,height,weight,conf_password,password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,6 +105,33 @@ class _SignupState extends State<Signup> {
                    ),
                   ),
                   SizedBox(height: 30 ,),
+                  new Container(
+                    margin: const EdgeInsets.only(left: 30,right: 30),
+                  child: TextFormField(
+                    validator: (input) {
+                      if (input.isEmpty) {
+                        return 'Please enter your Weight';
+                      }
+                    },
+                    onSaved: (input) => weight = input,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.ac_unit),
+                      labelText: "weight",
+                      labelStyle: TextStyle(
+                          color: Colors.black38,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
+                      ),
+                    ),
+                   ),
+                  ),
+                   SizedBox(height: 30 ,),
                   new Container(
                       margin: const EdgeInsets.only(left: 30,right: 30),
                   child: TextFormField(

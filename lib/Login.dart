@@ -3,8 +3,9 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:prescriptions/Paitentdashboard.dart';
 //import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'Signup.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'Paitentsignup.dart';
+import 'Doctorsignup.dart';
+//import 'package:hexcolor/hexcolor.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -117,7 +118,9 @@ class _LoginState extends State<Login> {
                   ),
                  ),
                   SizedBox(height: 10,),
+                  
                   new Row (children: <Widget>[
+                    /*
                     Container(
                       margin: const EdgeInsets.only(left: 10),
                    //child: Text("No Account"),
@@ -130,6 +133,7 @@ class _LoginState extends State<Login> {
                       child: Text("Sign up",style: TextStyle(color: Colors.blue, fontSize: 15)
                       ),
                     ),
+                    */
                     Spacer(),
                     Container(
                       margin: const EdgeInsets.only(right: 30),
@@ -143,6 +147,7 @@ class _LoginState extends State<Login> {
                     )
                   ]
                   ),
+                  
                   Divider(
                     color: Colors.black87,
                     height: 30.0,
@@ -151,19 +156,25 @@ class _LoginState extends State<Login> {
                    new Container(
                      margin: const EdgeInsets.only(left: 30),
                     child: RaisedButton(
-                      color:Hexcolor( "#3b5991" ),
+                    //  color:Hexcolor( "#3b5991" ),
+                    color: Colors.blue,
                       onPressed: () {
+                         Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Doctorsignup()));
                       },
-                      child:Image.asset("asset/facebook.png",width: 30.0,height: 30.0,fit:BoxFit.fill),
+                     // child:Image.asset("asset/facebook.png",width: 30.0,height: 30.0,fit:BoxFit.fill),
+                     child: Text("Sign up as Doctor",style: TextStyle(color: Colors.white),),
                      ),
                     ),
                     Spacer(),
                       Container(
                         margin: const EdgeInsets.only(right: 30),
                       child:RaisedButton(
+                        color: Colors.blue,
                         onPressed: () {
+                          Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Paitentsignup()));
                         },
-                        child: Image.asset("asset/gmail.png",width: 30.0,height: 30.0,fit:BoxFit.fill),
+                       // child: Image.asset("asset/gmail.png",width: 30.0,height: 30.0,fit:BoxFit.fill),
+                        child: Text("Sign up as Paitent",style: TextStyle(color: Colors.white),),
                         ),
                       )
                   ],

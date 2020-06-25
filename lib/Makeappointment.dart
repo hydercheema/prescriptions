@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 
-class Paitentappointments extends StatefulWidget {
+class Makeappointment extends StatefulWidget {
   @override
-  _PaitentappointmentsState createState() => _PaitentappointmentsState();
+  _MakeappointmentState createState() => _MakeappointmentState();
 }
 
-class _PaitentappointmentsState extends State<Paitentappointments> {
+class _MakeappointmentState extends State<Makeappointment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: Container(
+      body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("asset/appointmentspage.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
-       )
-    );
+            child: Row(children: <Widget>[
+              
+
+             ],
+            ),
+
+    ));
   }
 }

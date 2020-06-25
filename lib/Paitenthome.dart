@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prescriptions/Makeappointment.dart';
 
 class Paitenthome extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _PaitenthomeState extends State<Paitenthome> {
                               borderRadius: BorderRadius.circular(40.0),
                               child: InkWell(
                                   onTap: () {
-                                    print("2");
+                                     Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Makeappointment()));
                                   },
                                   child: Image.asset("asset/mbbs.png",
                                       width: 80.0,
