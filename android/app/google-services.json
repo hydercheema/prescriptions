@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "239994124333",
+    "firebase_url": "https://doctorsapp-35d0b.firebaseio.com",
+    "project_id": "doctorsapp-35d0b",
+    "storage_bucket": "doctorsapp-35d0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239994124333:android:19b060698ab310e11920a4",
+        "android_client_info": {
+          "package_name": "com.tascoit.prescriptions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239994124333-5k8dtf3bvn3iqven1rsp8ul86p0vu6ja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz2GkrESWhZUWc5szJ5uf9hwi7gCYAxw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239994124333-5k8dtf3bvn3iqven1rsp8ul86p0vu6ja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

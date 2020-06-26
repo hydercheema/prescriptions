@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/Login.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Doctorsignup extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class Doctorsignup extends StatefulWidget {
 
 class _DoctorsignupState extends State<Doctorsignup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String name,age,specialization,conf_password,password;
+  String name,registration,specialization,conf_password,password;
  
   @override
   Widget build(BuildContext context) {
@@ -56,14 +57,14 @@ class _DoctorsignupState extends State<Doctorsignup> {
                   child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter your Age';
+                        return 'Please enter your registration number';
                       }
                     },
-                    onSaved: (input) => age = input,
+                    onSaved: (input) => registration= input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.accessibility),
-                      labelText: "Age",
+                      labelText: "Registration#",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,

@@ -4,9 +4,18 @@
     <item android:drawable="@android:color/white" />
 
     <!-- You can insert your own image assets here -->
-    <!-- <item>
+     <item>
+        <shape android:shape="rectangle">
+            <padding
+                android:left="0dp"
+                android:top="0dp"
+                android:right="30dp"
+                android:bottom="30dp"/>
+        </shape>
+    </item>
+    <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/launch_image" />
-    </item> -->
+            android:src="@drawable/splash"/>
+    </item>
 </layer-list>
