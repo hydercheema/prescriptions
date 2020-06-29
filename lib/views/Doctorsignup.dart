@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:prescriptions/Login.dart';
+import 'package:prescriptions/views/Login.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class Paitentsignup extends StatefulWidget {
+class Doctorsignup extends StatefulWidget {
   @override
-  _PaitentsignupState createState() => _PaitentsignupState();
+  _DoctorsignupState createState() => _DoctorsignupState();
 }
 
-class _PaitentsignupState extends State<Paitentsignup> {
+class _DoctorsignupState extends State<Doctorsignup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String name,age,height,weight,conf_password,password;
-
+  String name,registration,specialization,conf_password,password;
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("asset/background.jpg"),
@@ -56,14 +57,14 @@ class _PaitentsignupState extends State<Paitentsignup> {
                   child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter your Age';
+                        return 'Please enter your registration number';
                       }
                     },
-                    onSaved: (input) => age = input,
+                    onSaved: (input) => registration= input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.accessibility),
-                      labelText: "Age",
+                      labelText: "Registration#",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,
@@ -83,14 +84,14 @@ class _PaitentsignupState extends State<Paitentsignup> {
                   child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter your Height';
+                        return 'Please enter your Specialization';
                       }
                     },
-                    onSaved: (input) => age = input,
+                    onSaved: (input) => specialization = input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.wc),
-                      labelText: "Height",
+                      prefixIcon: Icon(Icons.adjust),
+                      labelText: "Speciality",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,
@@ -105,33 +106,6 @@ class _PaitentsignupState extends State<Paitentsignup> {
                    ),
                   ),
                   SizedBox(height: 30 ,),
-                  new Container(
-                    margin: const EdgeInsets.only(left: 30,right: 30),
-                  child: TextFormField(
-                    validator: (input) {
-                      if (input.isEmpty) {
-                        return 'Please enter your Weight';
-                      }
-                    },
-                    onSaved: (input) => weight = input,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.ac_unit),
-                      labelText: "weight",
-                      labelStyle: TextStyle(
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                    ),
-                   ),
-                  ),
-                   SizedBox(height: 30 ,),
                   new Container(
                       margin: const EdgeInsets.only(left: 30,right: 30),
                   child: TextFormField(
@@ -216,6 +190,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                    ],
                   )
                 ])))
+
     );
   }
 }

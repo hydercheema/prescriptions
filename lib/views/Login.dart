@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-import 'package:prescriptions/Paitentdashboard.dart';
+import 'package:prescriptions/views/Paitentdashboard.dart';
 //import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'Paitentsignup.dart';
 import 'Doctorsignup.dart';
@@ -141,7 +141,7 @@ class _LoginState extends State<Login> {
                     child: RaisedButton(
                         color: Colors.blue,
                         onPressed: (){
-                          Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Doctordashboard()));
+                          Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Paitentdashboard()));
                         },
                         child:Text("Login",style: TextStyle(color: Colors.white),)
                       ),

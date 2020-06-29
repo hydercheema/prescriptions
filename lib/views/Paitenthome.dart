@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prescriptions/Makeappointment.dart';
+import 'package:prescriptions/views/Makeappointment.dart';
 
 class Paitenthome extends StatefulWidget {
   @override
