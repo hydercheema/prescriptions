@@ -9,7 +9,7 @@ class Doctorsignup extends StatefulWidget {
 
 class _DoctorsignupState extends State<Doctorsignup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String name,registration,specialization,conf_password,password;
+  String name,registration,specialization,conf_password,password,about;
  
   @override
   Widget build(BuildContext context) {
@@ -105,7 +105,41 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                    ),
                   ),
+
                   SizedBox(height: 30 ,),
+                  new Container(
+                    margin: const EdgeInsets.only(left: 30,right: 30),
+                  child: TextFormField(
+                    validator: (input) {
+                      if (input.isEmpty) {
+                        return 'Please enter about youself';
+                      }
+                      if(input.length<15){
+                        return 'About us should be more than 15';
+                      } 
+                    },
+                    onSaved: (input) => about = input,
+                    keyboardType: TextInputType.multiline,
+                     maxLength: 1000,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.adjust),
+                      labelText: "About",
+                      labelStyle: TextStyle(
+                          color: Colors.black38,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
+                      ),
+                    ),
+                   ),
+                  ),
+
+                  SizedBox(height: 30 ,),
+                  
                   new Container(
                       margin: const EdgeInsets.only(left: 30,right: 30),
                   child: TextFormField(

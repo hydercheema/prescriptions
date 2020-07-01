@@ -22,18 +22,18 @@ class _DoctordetailState extends State<Doctordetail> {
             Text(doctorcontroller.currentDoctor.speciality,style: TextStyle(fontSize:15,fontStyle:FontStyle.italic),),
             SizedBox(height: 20,),
             Text("About Doctor",style: TextStyle(fontSize: 20.0),),
-    
-             SizedBox(height: 10,),
-    
+
+             SizedBox(height: 10,),   
             new Container(
-              margin: const EdgeInsets.only(left:20),
-            child: new Row(children:<Widget>[
-               Text("I am a doctor")
-             ]) 
-            )                                   
-          ]
-          ),          
-        )
+              margin: const EdgeInsets.only(left:15.0,right: 15.0),
+            child:  Expanded(            
+                child: Text(
+                  doctorcontroller.currentDoctor.aboutUs,
+                  overflow: TextOverflow.clip,
+                ),
+            ), 
+         ),                                   
+       ]))
       ),
     );
   }

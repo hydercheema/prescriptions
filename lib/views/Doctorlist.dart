@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prescriptions/Api/Api.dart';
 import 'package:prescriptions/controllers/Doctorcontroller.dart';
 import 'package:prescriptions/views/Doctordetail.dart';
+import 'package:prescriptions/views/Doctoredit.dart';
 import 'package:provider/provider.dart';
 
 class Doctorlist extends StatefulWidget {
@@ -10,6 +11,7 @@ class Doctorlist extends StatefulWidget {
 }
 
 class _DoctorlistState extends State<Doctorlist> {
+  bool label=true;
   @override
   void initState(){
     Doctorcontroller doctorcontroller= Provider.of<Doctorcontroller>(context,listen: false);
@@ -38,6 +40,7 @@ class _DoctorlistState extends State<Doctorlist> {
           return Divider(color: Colors.blue,);
         },
       ),
+      
     );
   }
 }
