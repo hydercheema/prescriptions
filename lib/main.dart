@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/views/Login.dart';
 import 'package:prescriptions/controllers/Doctorcontroller.dart';
+import 'package:prescriptions/controllers/Paitentcontroller.dart';
 import 'package:provider/provider.dart';
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context)=> Doctorcontroller(),
+    ),
+    ChangeNotifierProvider(
+      create: (context)=> Paitentcontroller(),
     )
 ],child: MyApp(),
   ));

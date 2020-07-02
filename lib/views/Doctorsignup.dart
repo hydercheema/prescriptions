@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/views/Login.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:prescriptions/Api/Api.dart';
+import 'package:prescriptions/models/Doctormodel.dart';
+import 'package:prescriptions/controllers/Doctorcontroller.dart';
+import 'package:provider/provider.dart';
 
 class Doctorsignup extends StatefulWidget {
   @override
@@ -9,7 +13,21 @@ class Doctorsignup extends StatefulWidget {
 
 class _DoctorsignupState extends State<Doctorsignup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String name,registration,specialization,conf_password,password,about;
+   Doctor _currentDoctor;
+   String name,registration,specialization,conf_password,password,about;
+
+   @override
+   void initState(){
+    super.initState();
+    Doctorcontroller doctorcontroller=Provider.of<Doctorcontroller>(context,listen:false);
+
+    if (doctorcontroller.currentDoctor!=null) {
+      _currentDoctor=doctorcontroller.currentDoctor;
+    }
+    else{
+     _currentDoctor=  Doctor();
+    }
+   }
  
   @override
   Widget build(BuildContext context) {
@@ -33,7 +51,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter your Name';
                       }
                     },
-                    onSaved: (input) => name = input,
+                    onChanged: (input) => _currentDoctor.name= input,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.account_circle),
@@ -60,7 +78,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter your registration number';
                       }
                     },
-                    onSaved: (input) => registration= input,
+                    onChanged: (input) => _currentDoctor.registration= input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.accessibility),
@@ -87,8 +105,8 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter your Specialization';
                       }
                     },
-                    onSaved: (input) => specialization = input,
-                    keyboardType: TextInputType.number,
+                    onChanged: (input) => _currentDoctor.speciality = input,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.adjust),
                       labelText: "Speciality",
@@ -118,7 +136,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'About us should be more than 15';
                       } 
                     },
-                    onSaved: (input) => about = input,
+                    onChanged: (input) => _currentDoctor.aboutUs = input,
                     keyboardType: TextInputType.multiline,
                      maxLength: 1000,
                     decoration: InputDecoration(
@@ -150,7 +168,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter password more than 6 characters';
                       }
                     },
-                    onSaved: (input) => password = input,
+                    onChanged: (input) => _currentDoctor.password = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -178,7 +196,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return ' Please confirm password';
                       }
                     },
-                    onSaved: (input) => conf_password = input,
+                    onChanged: (input) => _currentDoctor.conPassword = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -202,7 +220,9 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     Spacer(),
                     new RaisedButton(
                         color: Colors.blue,
-                        onPressed: (){},
+                        onPressed: (){
+                          createDoctor(_currentDoctor);
+                        },
                         child:Text("Create Account",style: TextStyle(color: Colors.white),)
                     ),
                     Spacer(),

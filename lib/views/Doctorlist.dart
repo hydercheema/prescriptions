@@ -11,7 +11,6 @@ class Doctorlist extends StatefulWidget {
 }
 
 class _DoctorlistState extends State<Doctorlist> {
-  bool label=true;
   @override
   void initState(){
     Doctorcontroller doctorcontroller= Provider.of<Doctorcontroller>(context,listen: false);

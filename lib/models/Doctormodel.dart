@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 class Doctor{
+   
   String id;
   String name;
   String registration;
@@ -9,7 +10,7 @@ class Doctor{
   String conPassword;
   String aboutUs;
  // Timestamp createdAt;
-  Doctor();
+ Doctor({this.id,this.name,this.registration,this.speciality,this.password,this.conPassword,this.aboutUs});
   Doctor.fromMap(Map<String,dynamic> data){
     id=data['id'];
     name=data['name'];

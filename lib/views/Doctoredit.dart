@@ -22,7 +22,7 @@ class _DoctoreditState extends State<Doctoredit> {
       _currentDoctor=doctorcontroller.currentDoctor;
     }
     else{
-     _currentDoctor=  Doctor();
+     _currentDoctor= new Doctor();
     }
    }
    Widget _buildNameField(){
@@ -47,7 +47,7 @@ class _DoctoreditState extends State<Doctoredit> {
           }
           return null;
         },
-        onSaved: (String value){
+        onChanged: (String value){
           _currentDoctor.name=value;
         },
       );
@@ -75,7 +75,7 @@ class _DoctoreditState extends State<Doctoredit> {
           }
           return null;
         },
-        onSaved: (String value){
+        onChanged: (String value){
           _currentDoctor.registration=value;
         },
       );
@@ -100,7 +100,7 @@ class _DoctoreditState extends State<Doctoredit> {
           }
           return null;
         },
-        onSaved: (String value){
+        onChanged: (String value){
           _currentDoctor.speciality=value;
         },
       );
@@ -129,7 +129,7 @@ class _DoctoreditState extends State<Doctoredit> {
           }
           return null;
         },
-        onSaved: (String value){
+        onChanged: (String value){
           _currentDoctor.password=value;
         },
       );
@@ -158,7 +158,7 @@ class _DoctoreditState extends State<Doctoredit> {
           }
           return null;
         },
-        onSaved: (String value){
+        onChanged: (String value){
           _currentDoctor.conPassword=value;
         },
       );
@@ -187,7 +187,7 @@ class _DoctoreditState extends State<Doctoredit> {
           }
           return null;
         },
-        onSaved: (String value){
+        onChanged: (String value){
           _currentDoctor.aboutUs=value;
         },
       );
