@@ -11,6 +11,12 @@ class Paitentprofile extends StatefulWidget {
 
 class _PaitentprofileState extends State<Paitentprofile> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  @override
+  void initState(){
+    Paitentcontroller paitentcontroller= Provider.of<Paitentcontroller>(context,listen: false);
+    getPaitent(paitentcontroller);
+    super.initState();
+  }
  
   @override
   Widget build(BuildContext context) {
@@ -56,6 +62,17 @@ class _PaitentprofileState extends State<Paitentprofile> {
                new Text(paitentcontroller.paitentList[index].height,style: TextStyle(fontSize: 15.0),),                 
                ]
              ),
+
+            /*    
+           new SizedBox(height:25.0),
+             new Row(children:<Widget>[
+              new SizedBox(width:20.0),
+               new Text("Weight:",style: TextStyle(fontSize: 15.0,fontWeight: FontWeight.bold),),
+               new SizedBox(width:45),
+               new Text(paitentcontroller.paitentList[index].weight,style: TextStyle(fontSize: 15.0),),                 
+               ]
+             ),
+           */
             new SizedBox(height: 20,),
              new Row(children:<Widget>[
                new SizedBox(width:20),

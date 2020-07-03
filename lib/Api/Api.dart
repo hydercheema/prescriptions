@@ -45,3 +45,22 @@ getPaitent(Paitentcontroller paitentcontroller) async{
    });
     paitentcontroller.paitentList=_paitentlist;
 }
+
+updatePaitent(Paitent paitent)async{
+   CollectionReference paitentRef= Firestore.instance.collection('Paitent'); 
+     await paitentRef.document(paitent.id).updateData(paitent.toMap());
+     print("updated doctor with id:${paitent.id}");
+  
+   
+}
+
+createPaitent(Paitent paitent) async{
+
+     CollectionReference doctorRef= Firestore.instance.collection('Paitent'); 
+     DocumentReference documentReference =await doctorRef.add(paitent.toMap());
+       paitent.id= documentReference.documentID;
+       print("uploaded successfully: ${paitent.toString()}");
+       await documentReference.setData(paitent.toMap(),merge: true); 
+       print("added successfully");
+
+}

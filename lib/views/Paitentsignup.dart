@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:prescriptions/models/Paitentmodel.dart';
 import 'package:prescriptions/views/Login.dart';
+import 'package:provider/provider.dart';
+import 'package:prescriptions/controllers/Paitentcontroller.dart';
+import 'package:prescriptions/Api/Api.dart';
 
 class Paitentsignup extends StatefulWidget {
   @override
@@ -8,7 +12,22 @@ class Paitentsignup extends StatefulWidget {
 
 class _PaitentsignupState extends State<Paitentsignup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+   Paitent _currentPaitent;
   String name,age,height,weight,conf_password,password;
+
+
+   @override
+   void initState(){
+    super.initState();
+    Paitentcontroller paitentcontroller=Provider.of<Paitentcontroller>(context,listen:false);
+
+    if (paitentcontroller.currentPaitent!=null) {
+      _currentPaitent=paitentcontroller.currentPaitent;
+    }
+    else{
+     _currentPaitent=  Paitent();
+    }
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +51,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter your Name';
                       }
                     },
-                    onSaved: (input) => name = input,
+                    onChanged: (input) => _currentPaitent.name = input,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.account_circle),
@@ -59,7 +78,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter your Age';
                       }
                     },
-                    onSaved: (input) => age = input,
+                    onChanged: (input) => _currentPaitent.age = input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.accessibility),
@@ -86,7 +105,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter your Height';
                       }
                     },
-                    onSaved: (input) => age = input,
+                    onChanged: (input) => _currentPaitent.height = input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.wc),
@@ -113,7 +132,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter your Weight';
                       }
                     },
-                    onSaved: (input) => weight = input,
+                    onChanged: (input) => _currentPaitent.weight = input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.ac_unit),
@@ -142,7 +161,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter password more than 6 characters';
                       }
                     },
-                    onSaved: (input) => password = input,
+                    onChanged: (input) => _currentPaitent.password = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -170,7 +189,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return ' Please confirm password';
                       }
                     },
-                    onSaved: (input) => conf_password = input,
+                    onChanged: (input) => _currentPaitent.conPassword = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -194,7 +213,9 @@ class _PaitentsignupState extends State<Paitentsignup> {
                     Spacer(),
                     new RaisedButton(
                         color: Colors.blue,
-                        onPressed: (){},
+                        onPressed: (){
+                           createPaitent(_currentPaitent);
+                        },
                         child:Text("Create Account",style: TextStyle(color: Colors.white),)
                     ),
                     Spacer(),
