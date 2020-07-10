@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/controllers/Doctorcontroller.dart';
 import 'package:prescriptions/models/Doctormodel.dart';
+import 'package:prescriptions/views/Doctorprofile.dart';
 import 'package:provider/provider.dart';
 import 'package:prescriptions/Api/Api.dart';
 class Doctoredit extends StatefulWidget {
@@ -203,6 +204,32 @@ class _DoctoreditState extends State<Doctoredit> {
     // }
     
    }
+   void  _showDialog() async{
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("alert "),
+          content: new Text("data added successfully"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+             //  Navigator.of(context).pop();
+              Navigator.of(context).push(
+             new MaterialPageRoute(builder: (context) => Doctorprofile()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+   }
+
+
   @override
   Widget build(BuildContext context) {
     Doctorcontroller doctorcontroller=Provider.of<Doctorcontroller>(context,listen: false);
@@ -232,7 +259,10 @@ class _DoctoreditState extends State<Doctoredit> {
           ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:()=>_saveDoctor(),
+        onPressed:(){
+          _saveDoctor();
+          _showDialog();
+          },
         child: Icon(Icons.save),
         ),
       );

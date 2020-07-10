@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prescriptions/views/Paitentappointments.dart';
 import 'package:prescriptions/views/Paitenthome.dart';
 import 'package:prescriptions/views/Paitentprofile.dart';
+import 'package:prescriptions/views/Paitentsetprofile.dart';
 class Paitentdashboard extends StatefulWidget {
   @override
   _PaitentdashboardState createState() => _PaitentdashboardState();
@@ -17,7 +18,7 @@ class _PaitentdashboardState extends State<Paitentdashboard> {
   final _pageOptions=[
    Paitenthome(),
    Paitentappointments(),
-   Paitentprofile()
+   Paitentprofile(),
   ];
 
   void _onItemTapped(int index) {
@@ -45,6 +46,7 @@ class _PaitentdashboardState extends State<Paitentdashboard> {
                           icon: Icon(Icons.account_circle),
                           title: Text('Profile'),
           ),
+         
         ],
                // currentIndex: _selectedIndex,
                 selectedItemColor: Colors.blue,

@@ -2,12 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:prescriptions/views/Doctoredit.dart';
 import 'package:provider/provider.dart';
 import 'package:prescriptions/controllers/Doctorcontroller.dart';
+import 'package:prescriptions/Api/Api.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 class Doctorprofile extends StatefulWidget {
   @override
   _DoctorprofileState createState() => _DoctorprofileState();
 }
 
 class _DoctorprofileState extends State<Doctorprofile> {
+  
+   @override
+  void initState(){
+    Doctorcontroller doctorcontroller= Provider.of<Doctorcontroller>(context,listen: false);
+    getDoctor(doctorcontroller);
+    super.initState();
+  
+  }
   @override
   Widget build(BuildContext context) {
     Doctorcontroller doctorcontroller=Provider.of<Doctorcontroller>(context);
@@ -24,6 +34,9 @@ class _DoctorprofileState extends State<Doctorprofile> {
           return Container(
             margin: const EdgeInsets.only(top:90), 
            child: Column(children:<Widget>[  
+             new RaisedButton(
+               onPressed: (){}
+               ),
             new Text(doctorcontroller.doctorList[index].name,style: TextStyle(fontSize: 30.0,fontWeight: FontWeight.bold),),
             new Row(children:<Widget>[
               Spacer(),
@@ -87,8 +100,10 @@ class _DoctorprofileState extends State<Doctorprofile> {
         itemCount: doctorcontroller.doctorList.length,
         separatorBuilder: (BuildContext context, int index){
           return Divider(color: Colors.blue,);
+          
         },
        ),
+       
       ),
     );
   }

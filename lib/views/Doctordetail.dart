@@ -1,3 +1,4 @@
+import 'package:prescriptions/views/Makeappointment.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:prescriptions/controllers/Doctorcontroller.dart';
@@ -17,6 +18,17 @@ class _DoctordetailState extends State<Doctordetail> {
       body: Center(
         child:new Container(
           child: new Column(children:<Widget>[
+             new Row(children:<Widget>[
+              Spacer(),
+              new IconButton(
+              icon: Icon(Icons.feedback),
+               onPressed: (){
+            //  doctorcontroller.currentDoctor=doctorcontroller.doctorList[index];
+              Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>Makeappointment()));
+              },
+              ), 
+            ]),
+
             Text(doctorcontroller.currentDoctor.name,style: TextStyle(fontSize:30.0),),
             SizedBox(height: 10,),
             Text(doctorcontroller.currentDoctor.speciality,style: TextStyle(fontSize:15,fontStyle:FontStyle.italic),),
@@ -31,7 +43,8 @@ class _DoctordetailState extends State<Doctordetail> {
                   doctorcontroller.currentDoctor.aboutUs,
                   overflow: TextOverflow.clip,
                 ),
-            ), 
+            ),
+             
          ),                                   
        ]))
       ),

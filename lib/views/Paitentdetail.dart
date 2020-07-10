@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/controllers/Paitentcontroller.dart';
+import 'package:prescriptions/views/Paitentprescription.dart';
+import 'package:prescriptions/views/Paitentprescription.dart';
 import 'package:provider/provider.dart';
 import 'package:prescriptions/Api/Api.dart';
 
@@ -19,6 +21,17 @@ class _PaitentdetailState extends State<Paitentdetail> {
       body: Center(
         child:new Container(
           child: new Column(children:<Widget>[
+            new Row(children:<Widget>[
+              Spacer(),
+              new IconButton(
+              icon: Icon(Icons.feedback),
+               onPressed: (){
+            //  doctorcontroller.currentDoctor=doctorcontroller.doctorList[index];
+               Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>Paitentprescription()));
+              },
+              ), 
+            ]),
+
             Text(doctorcontroller.currentPaitent.name,style: TextStyle(fontSize:30.0),),
             SizedBox(height: 10,),
             Text(doctorcontroller.currentPaitent.age,style: TextStyle(fontSize:15,fontStyle:FontStyle.italic),),

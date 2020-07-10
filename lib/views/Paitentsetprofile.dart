@@ -1,39 +1,59 @@
-
 import 'package:flutter/material.dart';
-import 'package:prescriptions/views/Login.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:prescriptions/Api/Api.dart';
-import 'package:prescriptions/models/Doctormodel.dart';
-import 'package:prescriptions/controllers/Doctorcontroller.dart';
+import 'package:prescriptions/controllers/Paitentcontroller.dart';
 import 'package:provider/provider.dart';
-
-class Doctorsignup extends StatefulWidget {
+import 'package:prescriptions/Api/Api.dart';
+import 'package:prescriptions/models/Paitentmodel.dart';
+class Paitentsetprofile extends StatefulWidget {
   @override
-  _DoctorsignupState createState() => _DoctorsignupState();
+  _PaitentsetprofileState createState() => _PaitentsetprofileState();
 }
 
-class _DoctorsignupState extends State<Doctorsignup> {
+class _PaitentsetprofileState extends State<Paitentsetprofile> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-   Doctor _currentDoctor;
-   String name,registration,specialization,conf_password,password,about;
-
+   Paitent _currentPaitent;
    @override
    void initState(){
     super.initState();
-    Doctorcontroller doctorcontroller=Provider.of<Doctorcontroller>(context,listen:false);
+    Paitentcontroller paitentcontroller=Provider.of<Paitentcontroller>(context,listen:false);
 
-    if (doctorcontroller.currentDoctor!=null) {
-      _currentDoctor=doctorcontroller.currentDoctor;
+    if (paitentcontroller.currentPaitent!=null) {
+      _currentPaitent=paitentcontroller.currentPaitent;
     }
     else{
-     _currentDoctor=  Doctor();
+     _currentPaitent=  Paitent();
     }
    }
- 
+   
+   void  _showDialog() async{
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("alert "),
+          content: new Text("data added successfully"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+             //   Navigator.of(context).pop();
+            //  Navigator.of(context).push(
+            //  new MaterialPageRoute(builder: (context) => Paitentdetail()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+        body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("asset/background.jpg"),
@@ -52,7 +72,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter your Name';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.name= input,
+                    onChanged: (input) => _currentPaitent.name = input,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.account_circle),
@@ -76,14 +96,14 @@ class _DoctorsignupState extends State<Doctorsignup> {
                   child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter your registration number';
+                        return 'Please enter your Age';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.registration= input,
+                    onChanged: (input) => _currentPaitent.age = input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.accessibility),
-                      labelText: "Registration#",
+                      labelText: "Age",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,
@@ -103,14 +123,14 @@ class _DoctorsignupState extends State<Doctorsignup> {
                   child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter your Specialization';
+                        return 'Please enter your Height';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.speciality = input,
-                    keyboardType: TextInputType.text,
+                    onChanged: (input) => _currentPaitent.height = input,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.adjust),
-                      labelText: "Speciality",
+                      prefixIcon: Icon(Icons.wc),
+                      labelText: "Height",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,
@@ -124,25 +144,20 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                    ),
                   ),
-
                   SizedBox(height: 30 ,),
                   new Container(
                     margin: const EdgeInsets.only(left: 30,right: 30),
                   child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter about youself';
+                        return 'Please enter your Weight';
                       }
-                      if(input.length<15){
-                        return 'About us should be more than 15';
-                      } 
                     },
-                    onChanged: (input) => _currentDoctor.aboutUs = input,
-                    keyboardType: TextInputType.multiline,
-                     maxLength: 1000,
+                    onChanged: (input) => _currentPaitent.weight = input,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.adjust),
-                      labelText: "About",
+                      prefixIcon: Icon(Icons.ac_unit),
+                      labelText: "weight",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,
@@ -156,9 +171,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                    ),
                   ),
-
-                  SizedBox(height: 30 ,),
-                  
+                   SizedBox(height: 30 ,),
                   new Container(
                       margin: const EdgeInsets.only(left: 30,right: 30),
                   child: TextFormField(
@@ -169,7 +182,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter password more than 6 characters';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.password = input,
+                    onChanged: (input) => _currentPaitent.password = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -188,6 +201,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                    ),
                   ),
+                 /* 
                   SizedBox(height: 30,),
                  new Container(
                       margin: const EdgeInsets.only(left: 30,right: 30),
@@ -197,7 +211,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return ' Please confirm password';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.conPassword = input,
+                    onChanged: (input) => _currentPaitent.conPassword = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -216,36 +230,23 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                    ),
                  ),
+                */ 
                   SizedBox(height: 10,),
                   new Row (children: <Widget>[
                     Spacer(),
                     new RaisedButton(
                         color: Colors.blue,
                         onPressed: (){
-                          createDoctor(_currentDoctor);
+                           createPaitent(_currentPaitent);
+                           _showDialog();
                         },
-                        child:Text("Create Account",style: TextStyle(color: Colors.white),)
+                        child:Text("Save",style: TextStyle(color: Colors.white),)
                     ),
                     Spacer(),
                    ]
                   ),
-                  new Row(children: <Widget>[
-                    Spacer(),
-                    new Text("Already Have An Account",style: TextStyle(fontWeight: FontWeight.bold),),
-                    Container(
-                      margin: const EdgeInsets.only(right: 30),
-                    child: FlatButton(
-                      onPressed: (){
-                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Login()));
-                      },
-                      child: Text("Sign in",style: TextStyle(color: Colors.blue, fontSize: 15)
-                      ),
-                    ),
-                    ),
-                   ],
-                  )
+               
                 ])))
-
     );
   }
 }

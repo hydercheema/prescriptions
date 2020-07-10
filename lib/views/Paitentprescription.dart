@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/Api/Api.dart';
-import 'package:prescriptions/models/Descriptionmodel.dart';
 import 'package:prescriptions/models/Prescriptionmodel.dart';
-import 'package:prescriptions/controllers/Descriptioncontroller.dart';
-import 'package:prescriptions/views/Doctoredit.dart';
+import 'package:prescriptions/controllers/Prescriptioncontroller.dart';
+import 'package:prescriptions/views/Paitentdetail.dart';
 import 'package:provider/provider.dart';
-
-class Makeappointment extends StatefulWidget {
+class Paitentprescription extends StatefulWidget {
   @override
-  _MakeappointmentState createState() => _MakeappointmentState();
+  _PaitentprescriptionState createState() => _PaitentprescriptionState();
 }
 
-class _MakeappointmentState extends State<Makeappointment> {
+class _PaitentprescriptionState extends State<Paitentprescription> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  Description _currentDescription;
+  Prescription _currentPrescription;
 
-   @override
+     @override
    void initState(){
     super.initState();
-    Descriptioncontroller descriptioncontroller=Provider.of<Descriptioncontroller>(context,listen:false);
+    Prescriptioncontroller prescriptioncontroller=Provider.of<Prescriptioncontroller>(context,listen:false);
 
-    if (descriptioncontroller.currentdescription!=null) {
-      _currentDescription=descriptioncontroller.currentdescription;
+    if (prescriptioncontroller.currentPrescription!=null) {
+      _currentPrescription=prescriptioncontroller.currentPrescription;
     }
     else{
-     _currentDescription=  Description();
+     _currentPrescription=  Prescription();
     }
    }
-   void  _showDialog() async{
+void  _showDialog() async{
     // flutter defined function
     showDialog(
       context: context,
@@ -43,7 +41,7 @@ class _MakeappointmentState extends State<Makeappointment> {
               onPressed: () {
              //   Navigator.of(context).pop();
               Navigator.of(context).push(
-              new MaterialPageRoute(builder: (context) => Doctoredit()));
+              new MaterialPageRoute(builder: (context) => Paitentdetail()));
               },
             ),
           ],
@@ -71,7 +69,7 @@ class _MakeappointmentState extends State<Makeappointment> {
                      margin: const EdgeInsets.only(top: 100),
                     child: Row(children: <Widget>[
                       new Spacer(),
-                      Text("Please enter your description",style: TextStyle(fontSize:20.0),),
+                      Text("Please enter your Prescription",style: TextStyle(fontSize:20.0),),
                       new Spacer(),
                     ],),
                   ),
@@ -81,10 +79,10 @@ class _MakeappointmentState extends State<Makeappointment> {
                  child: TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter your description';
+                        return 'Please enter your prescription';
                       }
                     },
-                    onChanged: (input) => _currentDescription.description = input,
+                    onChanged: (input) => _currentPrescription.prescription = input,
                     keyboardType: TextInputType.multiline,
                     maxLines: 8,
                     maxLength: 1000,
@@ -104,7 +102,7 @@ class _MakeappointmentState extends State<Makeappointment> {
                     new RaisedButton(
                         color: Colors.blue,
                         onPressed: (){
-                          createDescription(_currentDescription);
+                          createPrescription(_currentPrescription);
                           _showDialog();
                         },
                         child:Text("Send",style: TextStyle(color: Colors.white),)

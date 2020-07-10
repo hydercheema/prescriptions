@@ -11,6 +11,8 @@ class Doctorlist extends StatefulWidget {
 }
 
 class _DoctorlistState extends State<Doctorlist> {
+  bool mbbsFlag=false;
+  var mbbs;
   @override
   void initState(){
     Doctorcontroller doctorcontroller= Provider.of<Doctorcontroller>(context,listen: false);
@@ -20,9 +22,9 @@ class _DoctorlistState extends State<Doctorlist> {
   @override
   Widget build(BuildContext context) {
     Doctorcontroller doctorcontroller=Provider.of<Doctorcontroller>(context);
-
     return Scaffold(
-      body: ListView.separated(
+      body:Container(
+        child: ListView.separated(
         itemBuilder: (BuildContext context,int index){  
           return ListTile(
             title: Text(doctorcontroller.doctorList[index].name,style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),),
@@ -38,8 +40,9 @@ class _DoctorlistState extends State<Doctorlist> {
         separatorBuilder: (BuildContext context, int index){
           return Divider(color: Colors.blue,);
         },
+       ) 
       ),
-      
+         
     );
   }
 }

@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:prescriptions/controllers/Usercontroller.dart';
 import 'package:prescriptions/models/Paitentmodel.dart';
+import 'package:prescriptions/models/Usermodel.dart';
 import 'package:prescriptions/views/Login.dart';
 import 'package:provider/provider.dart';
 import 'package:prescriptions/controllers/Paitentcontroller.dart';
@@ -13,9 +16,17 @@ class Paitentsignup extends StatefulWidget {
 class _PaitentsignupState extends State<Paitentsignup> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
    Paitent _currentPaitent;
+   User _user;
   String name,age,height,weight,conf_password,password;
+   @override
+   void initState(){
+    Usercontroller usercontroller= Provider.of<Usercontroller>(context,listen: false);
+    initilizeCurrentUser(usercontroller);
+    super.initState();
+ 
+  }
 
-
+   /*
    @override
    void initState(){
     super.initState();
@@ -28,7 +39,16 @@ class _PaitentsignupState extends State<Paitentsignup> {
      _currentPaitent=  Paitent();
     }
    }
+  */
+  createAccount(){
+   final formState =formkey.currentState;
 
+   if(formState.validate()){
+     formState.save();
+       Usercontroller usercontroller= Provider.of<Usercontroller>(context,listen: false);
+         signUP(_user,usercontroller);
+   }  
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,11 +71,37 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter your Name';
                       }
                     },
-                    onChanged: (input) => _currentPaitent.name = input,
+                  //  onChanged: (input) => _user.name = input,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.account_circle),
                       labelText: "Name",
+                      labelStyle: TextStyle(
+                          color: Colors.black38,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
+                      ),
+                    ),
+                   ),
+                  ),
+                  new Container(
+                    margin: const EdgeInsets.only(top: 30,left: 30,right: 30),
+                  child:TextFormField(
+                    validator: (input) {
+                      if (input.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                    },
+                    onChanged: (input) => _user.email = input,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle),
+                      labelText: "Email",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,
@@ -78,7 +124,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter your Age';
                       }
                     },
-                    onChanged: (input) => _currentPaitent.age = input,
+                 //   onChanged: (input) => _user.age = input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.accessibility),
@@ -105,7 +151,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter your Height';
                       }
                     },
-                    onChanged: (input) => _currentPaitent.height = input,
+                   // onChanged: (input) => _user.height = input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.wc),
@@ -161,7 +207,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                         return 'Please enter password more than 6 characters';
                       }
                     },
-                    onChanged: (input) => _currentPaitent.password = input,
+                    onChanged: (input) => _user.password = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -180,6 +226,7 @@ class _PaitentsignupState extends State<Paitentsignup> {
                     ),
                    ),
                   ),
+                  /*
                   SizedBox(height: 30,),
                  new Container(
                       margin: const EdgeInsets.only(left: 30,right: 30),
@@ -208,13 +255,15 @@ class _PaitentsignupState extends State<Paitentsignup> {
                     ),
                    ),
                  ),
+                 */
                   SizedBox(height: 10,),
                   new Row (children: <Widget>[
                     Spacer(),
                     new RaisedButton(
                         color: Colors.blue,
                         onPressed: (){
-                           createPaitent(_currentPaitent);
+                         //  createPaitent(_currentPaitent);
+                           createAccount();
                         },
                         child:Text("Create Account",style: TextStyle(color: Colors.white),)
                     ),

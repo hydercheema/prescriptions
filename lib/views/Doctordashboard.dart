@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/views/Doctorappointments.dart';
 import 'package:prescriptions/controllers/Doctorcontroller.dart';
+import 'package:prescriptions/views/Doctorsetprofile.dart';
 import 'package:provider/provider.dart';
 import 'package:prescriptions/Api/Api.dart';
 
@@ -26,7 +27,8 @@ class _DoctordashboardState extends State<Doctordashboard> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final _pageOptions=[
    Doctorappointments(),
-   Doctorprofile()
+   Doctorprofile(),
+   Doctorsetprofile(),
   ];
 
   void _onItemTapped(int index) {
@@ -50,6 +52,10 @@ class _DoctordashboardState extends State<Doctordashboard> {
                         BottomNavigationBarItem(
                           icon: Icon(Icons.account_circle),
                           title: Text('Profile'),
+          ),
+             BottomNavigationBarItem(
+                          icon: Icon(Icons.account_box),
+                          title: Text('Add profile'),
           ),
         ],
                // currentIndex: _selectedIndex,

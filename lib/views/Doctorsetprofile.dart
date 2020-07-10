@@ -1,18 +1,15 @@
-
 import 'package:flutter/material.dart';
-import 'package:prescriptions/views/Login.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:prescriptions/Api/Api.dart';
 import 'package:prescriptions/models/Doctormodel.dart';
 import 'package:prescriptions/controllers/Doctorcontroller.dart';
 import 'package:provider/provider.dart';
 
-class Doctorsignup extends StatefulWidget {
+class Doctorsetprofile extends StatefulWidget {
   @override
-  _DoctorsignupState createState() => _DoctorsignupState();
+  _DoctorsetprofileState createState() => _DoctorsetprofileState();
 }
 
-class _DoctorsignupState extends State<Doctorsignup> {
+class _DoctorsetprofileState extends State<Doctorsetprofile> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
    Doctor _currentDoctor;
    String name,registration,specialization,conf_password,password,about;
@@ -224,26 +221,12 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         onPressed: (){
                           createDoctor(_currentDoctor);
                         },
-                        child:Text("Create Account",style: TextStyle(color: Colors.white),)
+                        child:Text("Save",style: TextStyle(color: Colors.white),)
                     ),
                     Spacer(),
                    ]
                   ),
-                  new Row(children: <Widget>[
-                    Spacer(),
-                    new Text("Already Have An Account",style: TextStyle(fontWeight: FontWeight.bold),),
-                    Container(
-                      margin: const EdgeInsets.only(right: 30),
-                    child: FlatButton(
-                      onPressed: (){
-                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Login()));
-                      },
-                      child: Text("Sign in",style: TextStyle(color: Colors.blue, fontSize: 15)
-                      ),
-                    ),
-                    ),
-                   ],
-                  )
+                  
                 ])))
 
     );

@@ -1,38 +1,67 @@
-
+/*
 import 'package:flutter/material.dart';
-import 'package:prescriptions/views/Login.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:prescriptions/models/Usermodel.dart';
 import 'package:prescriptions/Api/Api.dart';
-import 'package:prescriptions/models/Doctormodel.dart';
-import 'package:prescriptions/controllers/Doctorcontroller.dart';
+import 'package:prescriptions/controllers/Usercontroller.dart';
 import 'package:provider/provider.dart';
+import 'Login.dart';
 
-class Doctorsignup extends StatefulWidget {
+class Signup extends StatefulWidget {
   @override
-  _DoctorsignupState createState() => _DoctorsignupState();
+  _SignupState createState() => _SignupState();
 }
 
-class _DoctorsignupState extends State<Doctorsignup> {
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-   Doctor _currentDoctor;
-   String name,registration,specialization,conf_password,password,about;
+class _SignupState extends State<Signup> {
+   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  String registeration, password;
+  User _user=User();
 
    @override
    void initState(){
+    Usercontroller usercontroller= Provider.of<Usercontroller>(context,listen: false);
+    initilizeCurrentUser(usercontroller);
     super.initState();
-    Doctorcontroller doctorcontroller=Provider.of<Doctorcontroller>(context,listen:false);
-
-    if (doctorcontroller.currentDoctor!=null) {
-      _currentDoctor=doctorcontroller.currentDoctor;
-    }
-    else{
-     _currentDoctor=  Doctor();
-    }
-   }
  
+  }
+
+  createAccount(){
+   final formState =formkey.currentState;
+
+   if(formState.validate()){
+     formState.save();
+       Usercontroller usercontroller= Provider.of<Usercontroller>(context,listen: false);
+         signUP(_user,usercontroller);
+   }  
+  }
+void  _showDialog() async{
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("alert "),
+          content: new Text("data added successfully"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+             //   Navigator.of(context).pop();
+              Navigator.of(context).push(
+              new MaterialPageRoute(builder: (context) => Login()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+   }
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -49,14 +78,14 @@ class _DoctorsignupState extends State<Doctorsignup> {
                   child:TextFormField(
                     validator: (input) {
                       if (input.isEmpty) {
-                        return 'Please enter your Name';
+                        return 'Please enter your email';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.name= input,
+                    onChanged: (input) => _user.email= input,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_circle),
-                      labelText: "Name",
+                      prefixIcon: Icon(Icons.email),
+                      labelText: "Email",
                       labelStyle: TextStyle(
                           color: Colors.black38,
                           fontWeight: FontWeight.w400,
@@ -70,6 +99,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                    ),
                   ),
+                  /*
                   SizedBox(height: 30 ,),
                  new Container(
                    margin: const EdgeInsets.only(left: 30,right: 30),
@@ -79,7 +109,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter your registration number';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.registration= input,
+                    onChanged: (input) => _user.= input,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.accessibility),
@@ -97,66 +127,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                   ),
                  ),
-                  SizedBox(height: 30 ,),
-                  new Container(
-                    margin: const EdgeInsets.only(left: 30,right: 30),
-                  child: TextFormField(
-                    validator: (input) {
-                      if (input.isEmpty) {
-                        return 'Please enter your Specialization';
-                      }
-                    },
-                    onChanged: (input) => _currentDoctor.speciality = input,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.adjust),
-                      labelText: "Speciality",
-                      labelStyle: TextStyle(
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                    ),
-                   ),
-                  ),
-
-                  SizedBox(height: 30 ,),
-                  new Container(
-                    margin: const EdgeInsets.only(left: 30,right: 30),
-                  child: TextFormField(
-                    validator: (input) {
-                      if (input.isEmpty) {
-                        return 'Please enter about youself';
-                      }
-                      if(input.length<15){
-                        return 'About us should be more than 15';
-                      } 
-                    },
-                    onChanged: (input) => _currentDoctor.aboutUs = input,
-                    keyboardType: TextInputType.multiline,
-                     maxLength: 1000,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.adjust),
-                      labelText: "About",
-                      labelStyle: TextStyle(
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                    ),
-                   ),
-                  ),
-
+                  */
                   SizedBox(height: 30 ,),
                   
                   new Container(
@@ -169,7 +140,7 @@ class _DoctorsignupState extends State<Doctorsignup> {
                         return 'Please enter password more than 6 characters';
                       }
                     },
-                    onChanged: (input) => _currentDoctor.password = input,
+                    onChanged: (input) => _user.password = input,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -188,41 +159,15 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     ),
                    ),
                   ),
-                  SizedBox(height: 30,),
-                 new Container(
-                      margin: const EdgeInsets.only(left: 30,right: 30),
-                  child: TextFormField(
-                    validator: (input) {
-                      if (input.isEmpty) {
-                        return ' Please confirm password';
-                      }
-                    },
-                    onChanged: (input) => _currentDoctor.conPassword = input,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: "Confirm Password",
-                      labelStyle: TextStyle(
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 5.0),
-                      ),
-                    ),
-                   ),
-                 ),
+                 
                   SizedBox(height: 10,),
                   new Row (children: <Widget>[
                     Spacer(),
                     new RaisedButton(
                         color: Colors.blue,
                         onPressed: (){
-                          createDoctor(_currentDoctor);
+                          createAccount();
+                          _showDialog();
                         },
                         child:Text("Create Account",style: TextStyle(color: Colors.white),)
                     ),
@@ -235,7 +180,9 @@ class _DoctorsignupState extends State<Doctorsignup> {
                     Container(
                       margin: const EdgeInsets.only(right: 30),
                     child: FlatButton(
-                      onPressed: (){
+                      onPressed: (
+
+                      ){
                         Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>Login()));
                       },
                       child: Text("Sign in",style: TextStyle(color: Colors.blue, fontSize: 15)
@@ -249,3 +196,4 @@ class _DoctorsignupState extends State<Doctorsignup> {
     );
   }
 }
+*/

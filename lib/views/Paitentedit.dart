@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prescriptions/views/Paitentprofile.dart';
 import 'package:provider/provider.dart';
 import 'package:prescriptions/controllers/Paitentcontroller.dart';
 import 'package:prescriptions/models/Paitentmodel.dart';
@@ -200,6 +201,31 @@ class _PaitenteditState extends State<Paitentedit> {
     
    }
 
+void  _showDialog() async{
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("alert "),
+          content: new Text("data added successfully"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+             //   Navigator.of(context).pop();
+              Navigator.of(context).push(
+              new MaterialPageRoute(builder: (context) => Paitentprofile()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+   }
+
 
 
   @override
@@ -231,7 +257,10 @@ class _PaitenteditState extends State<Paitentedit> {
           ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:()=>_savePaitent(),
+        onPressed:(){
+          _savePaitent();
+           _showDialog();
+          },
         child: Icon(Icons.save),
         ),
       

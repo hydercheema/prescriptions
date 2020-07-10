@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prescriptions/views/Doctorlist.dart';
+import 'package:prescriptions/views/Paitentsetprofile.dart';
 
 class Paitenthome extends StatefulWidget {
   @override
@@ -130,7 +131,18 @@ class _PaitenthomeState extends State<Paitenthome> {
                       Spacer()
                     ]
                  )
-             )  
+             ),  
+             new Container(
+                   child: Row(children:<Widget>[
+                     Spacer(),
+                     FloatingActionButton(
+                         onPressed:(){
+                             Navigator.of(context).push(
+              new MaterialPageRoute(builder: (context) => Paitentsetprofile()));},
+                         child: Icon(Icons.assignment),
+               ),
+                   ])
+                 )
                      ]))));
   }
 }
